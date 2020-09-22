@@ -16,7 +16,7 @@ public class Professor {
 	}
 	public void setId(int id) {
 		if(id < 0) {
-			View.exibirErro("A matricula não pode ser negativa", "PROFESSOR");
+			throw new IllegalArgumentException("[PROFESSOR]: A matricula não pode ser negativa");
 		}else {
 			this.id = id;
 		}
@@ -26,7 +26,7 @@ public class Professor {
 	}
 	public void setNome(String nome) {
 		if(nome == null || nome.trim().length() == 0) {
-			View.exibirErro("O nome não pode ser vazio!", "PROFESSOR");
+			throw new IllegalArgumentException("[PROFESSOR]: O nome não pode ser vazio!");
 		}else {
 			this.nome = nome;
 		}

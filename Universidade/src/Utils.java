@@ -1,7 +1,12 @@
 
 public class Utils {
+	static Universidade criarUniversidade() {
+		String nomeGerado = View.solicitarString("Informe o nome da Universidade: ", "UNIVERSIDADE");
+		Universidade universidade = new Universidade(nomeGerado); 
+		return universidade;
+	}
 	static Aluno criarAluno() {
-		String nomeGerado = View.solicitarString("Informe o nome do Aluno: ", "ALUNO");
+		String nomeGerado =  View.solicitarString("Informe o nome do Aluno: ", "ALUNO");
 		int idGerado = View.solicitarInt("Informe o id do Aluno: ", "ALUNO");
 		Aluno fulano = new Aluno (nomeGerado, idGerado);
 		return fulano;
@@ -24,5 +29,5 @@ public class Utils {
 		Curso curso = new Curso (idGerado, nomeGerado);
 		return curso;
 	}
-	
+
 }

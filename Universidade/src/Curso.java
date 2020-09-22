@@ -18,7 +18,7 @@ public class Curso {
 	}
 	public void setId(int id) {
 		if(id < 0) {
-			View.exibirErro("O código do curso não pode ser negativo", "CURSO");
+			throw new IllegalArgumentException("[CURSO]: O código do curso não pode ser negativo");
 		}else {
 			this.id = id;
 		}
@@ -28,28 +28,43 @@ public class Curso {
 	}
 	public void setNome(String nome) {
 		if(nome == null || nome.trim().length() == 0) {
-			View.exibirErro("O nome não pode ser vazio!", "CURSO");
+			throw new IllegalArgumentException("[CURSO]: O nome não pode ser vazio!");
 		}else {
 			this.nome = nome;
 		}
 	}
 
 	//Methods 
-	void criarTurma() {
+	Turma criarTurma() {
 		if(this.turmas.size()>=3)
-			View.exibirErro("Limite de turmas excedido!!", "CURSO");
+			throw new IllegalArgumentException("[CURSO]: Limite de turmas excedido!!");
 		else {
 			Turma turma = Utils.criarTurma();
 			this.turmas.add(turma);
+			return turma;
 		}
 	}
-	void transferirAlunos() {
-		
+	Turma acharTurma(int id) {
+		int flag = 0;
+		for (Turma turma : this.turmas) {
+			if(turma.getId() == id) {
+				return turma; 
+			}
+			flag = 1;
+		}
+		if(flag == 1) {
+			throw new IllegalArgumentException("[MENU CURSO]: Turma não encontrada");
+		}
+		return null;
 	}
-	void transferirProf() {
-		
+	void transferirAlunos(Aluno aluno1, Turma turma1, Turma turma2) {
+		turma1.alunos.remove(aluno1);
+		turma2.alunos.add(aluno1);
 	}
-	
+	void transferirProf(Professor prof1, Professor prof2, Turma turma1, Turma turma2) {
+		turma1.setProfessor(prof2);
+		turma2.setProfessor(prof1);
+	}
 	public String toString() {
 		String msg = "\nId do curso: " + this.id + "\nNome do curso: " + this.nome;
 		for (Turma turma : turmas) {
