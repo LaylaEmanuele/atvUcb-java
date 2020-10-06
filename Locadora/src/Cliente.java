@@ -17,7 +17,7 @@ public class Cliente {
 		if(this.filmesCliente.size()>2) {
 			View.exibirErro("Limite de alugueis excedido!");
 		}else {
-			Filme filme = null;;
+			Filme filme = null;
 			do {
 				int id = View.solicitarInt("Qual o id do filme a ser alugado?");
 				filme = idFilme(id);
