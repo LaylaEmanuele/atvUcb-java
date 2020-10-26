@@ -6,7 +6,7 @@ public class Usuario {
 	private int id;
 	private String nome;
 	private String senha;
-	private ArrayList<Livro> livros = new ArrayList<Livro>();
+	private ArrayList<Livro> livros = null;
 
 
 	//Construtor
@@ -57,7 +57,11 @@ public class Usuario {
 	}
 
 	public void setLivros(ArrayList<Livro> livros) {
-		this.livros = livros;
+		if(livros == null) {
+			throw new IllegalArgumentException("[LIVRO]: Erro no cadastro do livro! Objeto == null");
+		}else {
+			this.livros = livros;			
+		}
 	}
 
 
@@ -88,11 +92,15 @@ public class Usuario {
 	}
 
 	void listarCatalago() {
-		String msg = "";
-		for (Livro livro : this.livros) {
-			msg = msg + livro.toString() + "\n";
+		if(this.livros != null) {
+			String msg = "";
+			for (Livro livro : this.livros) {
+				msg = msg + livro.toString() + "\n";
+			}
+			View.exibirMensagem(msg, "[CATÁLAGO USUÁRIO]");
+		}else {
+			throw new IllegalArgumentException("[CATÁLAGO USUÁRIO]: Não há livros na sua lista de leitura!");
 		}
-		View.exibirMensagem(msg, "[CATÁLAGO USUÁRIO]");
 	}
 
 	void avaliarLivro(Usuario user) {

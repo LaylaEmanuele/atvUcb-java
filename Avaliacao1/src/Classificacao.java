@@ -15,7 +15,11 @@ public class Classificacao {
 		return user;
 	}
 	public void setUser(Usuario user) {
-		this.user = user;
+		if(user == null) {
+			throw new IllegalArgumentException("[USUÁRIO]: Erro no cadastro do usuário! Objeto == null");
+		}else {
+			this.user = user;			
+		}
 	}
 
 	public int getAvaliacao() {
@@ -23,7 +27,11 @@ public class Classificacao {
 	}
 
 	public void setAvaliacao(int avaliacao) {
-		this.avaliacao = avaliacao;
+		if(avaliacao < 0) {
+			throw new IllegalArgumentException("[CLASSIFICAÇÃO]: A classificação do livro não pode ser negativa");
+		}else {
+			this.avaliacao = avaliacao;
+		}
 	}
 
 

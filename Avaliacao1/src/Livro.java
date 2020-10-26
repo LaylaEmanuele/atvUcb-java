@@ -42,7 +42,11 @@ public class Livro {
 	}
 
 	public void setClassificacoes(ArrayList<Classificacao> classificacoes) {
-		this.classificacoes = classificacoes;
+		if(classificacoes == null) {
+			throw new IllegalArgumentException("[CLASSIFICAÇÃO]: Erro na adição da avaliação! Objeto == null");
+		}else {
+			this.classificacoes = classificacoes;			
+		}
 	}
 
 	public double getMediaAvaliacao() {
@@ -50,7 +54,11 @@ public class Livro {
 	}
 
 	public void setMediaAvaliacao(double mediaAvaliacao) {
-		this.mediaAvaliacao = mediaAvaliacao;
+		if(mediaAvaliacao < 0) {
+			throw new IllegalArgumentException("[CLASSIFICAÇÃO]: A clasificação não pode ser negativa");
+		}else {
+			this.mediaAvaliacao = mediaAvaliacao;
+		}
 	}
 
 	//Methods 

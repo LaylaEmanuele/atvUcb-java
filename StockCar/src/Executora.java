@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 
 public class Executora {
 	public static void main(String[] args) {

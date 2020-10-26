@@ -17,7 +17,11 @@ public class App {
 	}
 
 	public void setLivros(ArrayList<Livro> livros) {
-		this.livros = livros;
+		if(livros == null) {
+			throw new IllegalArgumentException("[LIVRO]: Erro no cadastro do livro! Objeto == null");
+		}else {
+			this.livros = livros;			
+		}
 	}
 
 	public ArrayList<Usuario> getUsers() {
@@ -25,7 +29,11 @@ public class App {
 	}
 
 	public void setUsers(ArrayList<Usuario> users) {
-		this.users = users;
+		if(users == null) {
+			throw new IllegalArgumentException("[USUÁRIO]: Erro no cadastro do usuário! Objeto == null");
+		}else {
+			this.users = users;			
+		}
 	}
 
 	public String getNome() {
@@ -33,7 +41,11 @@ public class App {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		if(nome == null || nome.trim().length() == 0) {
+			throw new IllegalArgumentException("[APP]: O nome não pode ser vazio!");
+		}else {
+			this.nome = nome;
+		}
 	}
 
 	//Methods
@@ -97,7 +109,11 @@ public class App {
 
 	void criarIdLivro(Livro novolivro){
 		int  id = View.solicitarInt("Informe o id do livro a ser adicionado: ", "[CADASTRO LIVRO]");
-
+		
+		if(id < 0) {
+			throw new IllegalArgumentException("[LIVRO]: O id do livro não pode ser negativo");
+		}
+		
 		for (Livro livro : livros) {
 			if(id == livro.getId()) {
 				throw new IllegalArgumentException("[CADASTRO LIVRO]: Id já cadastrado!");
