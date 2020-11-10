@@ -4,7 +4,8 @@ public class Banco {
 	//Atributos
 	private String nome;
 	private int codigo;
-	ArrayList<Conta> contas = new ArrayList<Conta>();
+	private ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
+	private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	
 	//Construtores
 	Banco(int codigo, String nome){
@@ -37,16 +38,42 @@ public class Banco {
 		}
 	}
 	
+
 	//Methods 
-	void inserirConta(Conta c) {
-		this.contas.add(c);
+	void inserirCliente(Cliente c) {
+		this.clientes.add(c);
 	}
 	
-	void excluirConta(Conta c) {
-		this.contas.remove(c);
+	void excluirCliente(Cliente c) {
+		this.clientes.remove(c);
 	}
-	void transferirContas(Banco bancoDestino, Conta c) {
-		this.excluirConta(c);
-		bancoDestino.inserirConta(c);
+//	void transferirContas(Banco bancoDestino, Conta c) {
+//		this.excluirConta(c);
+//		bancoDestino.inserirConta(c);
+//	}
+	
+	void inserirFuncionario(Funcionario c) {
+		this.funcionarios.add(c);
 	}
+	
+	void excluirFuncionario(Funcionario c) {
+		this.funcionarios.remove(c);
+	}
+	
+	void excluirC(int numero) {
+		for (Cliente cliente : this.clientes) {
+			if(cliente.getContaC().getNumero() == numero) {
+				cliente.setContaC(null); 
+			}
+		}
+	}
+	
+	void excluirE(int numero) {
+		for (Cliente cliente : this.clientes) {
+			if(cliente.getContaE().getNumero() == numero) {
+				cliente.setContaE(null); 
+			}
+		}
+	}
+	
 }

@@ -1,6 +1,6 @@
 import javax.swing.JOptionPane;
 
-public class View {
+abstract public class View {
 	static void exibirMensagem(String msg) {
 		JOptionPane.showMessageDialog(null, msg);
 	}
